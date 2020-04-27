@@ -3,7 +3,7 @@
 """Flask server module"""
 
 from api.v1.views import app_views
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 
 app = Flask(__name__)
@@ -17,6 +17,12 @@ app.register_blueprint(app_views)
 def teardown_db(exc):
     """Teardown db"""
     storage.close()
+
+
+@app.errorhandler(404)
+def invalid_route(e):
+    """Handle 404 error with json response 404"""
+    return jsonify(error="Not found"), 404
 
 
 if __name__ == '__main__':
