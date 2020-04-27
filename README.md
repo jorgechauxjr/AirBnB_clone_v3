@@ -154,6 +154,9 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
+
+Sebastian Lopez Herrera - [Github](https://github.com/sebas119) / [Twitter](https://twitter.com/sebas119_)
+Jorge Chaux - [Github](https://github.com/jorgechauxjr) / [Twitter](https://twitter.com/jorgechauxjr)
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
