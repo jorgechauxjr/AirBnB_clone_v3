@@ -91,6 +91,7 @@ class TestFileStorage(unittest.TestCase):
 @unittest.skipIf(models.storage_t != 'db', 'not testing db storage')
 class TestImproveStorage(unittest.TestCase):
     """testing Count and Get methods"""
+    __len_all_objs = 4
 
     def setUp(self):
         """initializes new objects dbstorage"""
@@ -115,5 +116,4 @@ class TestImproveStorage(unittest.TestCase):
     def test_count_all(self):
         """checks return of count method"""
         count_objs = models.storage.count()
-        len_objs = 4
-        self.assertEqual(len_objs, count_objs)
+        self.assertEqual(self.__len_all_objs, count_objs)
