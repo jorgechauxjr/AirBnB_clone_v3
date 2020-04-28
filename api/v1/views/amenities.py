@@ -53,3 +53,18 @@ def create_Amenity(amenity_id):
     new_city = City(**amenites_dict)
     new_city.save()
     return jsonify(new_city.to_dict()), 201
+
+
+@app_views.route('/amenities/<amenity_id>', methods=['PUT'])
+def update_amenity(amenity_id):
+    """
+    Updates an Amenity object
+    """
+    amenity_obj = storage.get('Amenity', amenity_id)
+    if amenity_obj is None:
+        abort(404)
+    amenity_dict = request.get_json()
+    if amenity_dict is None:
+        abort(400, "Not a JSON")
+    amenity_obj.update(amenity_dict)
+    return jsonify(amenity_obj.to_dict())
