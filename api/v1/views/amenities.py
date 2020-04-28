@@ -28,9 +28,28 @@ def amenities_list_id(amenities_id):
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
 def amenities_remove(amenity_id):
     """Remove an amenity by Id"""
-    amenity_to_delete = storage.get('City', amenity_id)
+    amenity_to_delete = storage.get('Amenity', amenity_id)
     if amenity_to_delete is None:
         abort(404)
     amenity_to_delete.delete()
     storage.save()
     return jsonify({}), 200
+
+
+@app_views.route('/amenities', methods=['POST'])
+def create_Amenity(amenity_id):
+    """
+    Creates a new amenity
+    """
+    if request.is_json is False:
+        abort(400, "Not a JSON")
+    amenites_dict = request.get_json()
+    if 'name' not in amenites_dict:
+        abort(400, 'Missing name')
+    amenity = storage.get('Amenity', amenity_id)
+    if amenity is None:
+        abort(404)
+    amenites_dict.update(amenity_id=amenity_id)
+    new_city = City(**amenites_dict)
+    new_city.save()
+    return jsonify(new_city.to_dict()), 201
