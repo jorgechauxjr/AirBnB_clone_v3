@@ -23,3 +23,14 @@ def amenities_list_id(amenities_id):
         if element.id == amenities_id:
             return jsonify(element.to_dict())
     abort(404)
+
+
+@app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
+def amenities_remove(amenity_id):
+    """Remove an amenity by Id"""
+    amenity_to_delete = storage.get('City', amenity_id)
+    if amenity_to_delete is None:
+        abort(404)
+    amenity_to_delete.delete()
+    storage.save()
+    return jsonify({}), 200
