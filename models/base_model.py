@@ -19,8 +19,8 @@ else:
     Base = object
 
 ignored_keys = ["id", "created_at", "updated_at",
-               "state_id", "email", "user_id",
-               "city_id", "place_id"]
+                "state_id", "email", "user_id",
+                "city_id", "place_id"]
 
 
 class BaseModel:
