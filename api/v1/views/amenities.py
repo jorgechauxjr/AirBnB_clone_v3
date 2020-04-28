@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""States view module.."""
+"""amenities view module.."""
 from models import storage
 from api.v1.views import app_views
-from flask import Flask, jsonify, abort, request, make_response
+from flask import Flask, jsonify, abort, request
 
 
 @app_views.route('/amenities', methods=['GET'])
