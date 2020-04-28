@@ -18,6 +18,10 @@ if models.storage_t == "db":
 else:
     Base = object
 
+ignored_keys = ["id", "created_at", "updated_at",
+               "state_id", "email", "user_id",
+               "city_id", "place_id"]
+
 
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
@@ -73,3 +77,12 @@ class BaseModel:
     def delete(self):
         """delete the current instance from the storage"""
         models.storage.delete(self)
+
+    def update(self, attr_to_update=None):
+        """Update object given the dict attributes"""
+
+        if attr_to_update:
+            for key, value in attr_to_update.items():
+                if key not in ignored_keys:
+                    setattr(self, key, value)
+            self.save()
