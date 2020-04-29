@@ -29,9 +29,7 @@ def amenities_remove(amenity_id):
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'])
 def update_amenity(amenity_id):
-    """
-    Updates an Amenity object
-    """
+    """Updates an Amenity object"""
     amenity_obj = storage.get('Amenity', amenity_id)
     if amenity_obj is None:
         abort(404)
@@ -66,4 +64,3 @@ def create_amenity():
     new_amenity = Amenity(**amenity_dict)
     new_amenity.save()
     return jsonify(new_amenity.to_dict()), 201
-
