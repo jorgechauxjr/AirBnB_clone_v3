@@ -138,3 +138,12 @@ class TestImproveStorage(unittest.TestCase):
         obj_state = models.storage.get('State', self.state_1.id)
         state_id = self.state_1.id
         self.assertEqual(state_id, obj_state.id)
+
+    def test_count_all(self):
+        """Checks return of count method"""
+        count_objs = models.storage.count()
+        self.state_5 = State(name="Cali")
+        models.storage.new(self.state_5)
+        self.state_5.save()
+        count_objs2 = models.storage.count()
+        self.assertEqual(count_objs + 1, count_objs2)
