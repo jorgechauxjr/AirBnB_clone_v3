@@ -115,4 +115,8 @@ class TestFileStorage(unittest.TestCase):
     def test_count_all(self):
         """Checks return of count method"""
         count_objs = models.storage.count()
-        self.assertEqual(self.__len_all_objs, count_objs)
+        self.state_5 = State(name="Cali")
+        models.storage.new(self.state_5)
+        self.state_5.save()
+        count_objs2 = models.storage.count()
+        self.assertEqual(count_objs + 1, count_objs2)
