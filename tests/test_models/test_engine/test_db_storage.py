@@ -90,7 +90,6 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', 'not testing db storage')
     class TestImproveStorage(unittest.TestCase):
         """Testing Count and Get methods"""
-        __len_all_objs = 4
 
     def setUp(self):
         """Initializes new objects dbstorage"""
