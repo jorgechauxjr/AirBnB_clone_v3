@@ -39,3 +39,16 @@ def update_amenity(amenity_id):
         abort(400, "Not a JSON")
     amenity_obj.update(amenity_dict)
     return jsonify(amenity_obj.to_dict())
+
+
+@app_views.route("/amenities/<amenity_id>", methods=["GET"])
+def amenities_by_id(amenity_id=None):
+    """Get a amenity by id"""
+
+    obj_amenity = storage.get("Amenity", amenity_id)
+
+    if obj_amenity is None:
+        abort(404)
+
+    if request.method == "GET":
+        return jsonify(obj_amenity.to_dict())
