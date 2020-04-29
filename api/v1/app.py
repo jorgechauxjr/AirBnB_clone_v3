@@ -5,8 +5,10 @@
 from api.v1.views import app_views
 from flask import Flask, jsonify
 from models import storage
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, origins="0.0.0.0")
 app.url_map.strict_slashes = False
 
 # app_views variable created in api.v1.views
