@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains the TestFileStorageDocs classes
+Contains the TestFileStorageDocs classes tod unitesting
 """
 
 from datetime import datetime
@@ -80,7 +80,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_new(self):
-        """test that new adds an object to the FileStorage.__objects attr"""
+        """Test that new adds an object to the FileStorage.__objects attr"""
         storage = FileStorage()
         save = FileStorage._FileStorage__objects
         FileStorage._FileStorage__objects = {}
@@ -117,10 +117,10 @@ class TestFileStorage(unittest.TestCase):
 
 @unittest.skipIf(models.storage_t == 'db', 'not testing file storage')
 class TestImproveStorage(unittest.TestCase):
-    """testing Count and Get methods"""
+    """Testing Count and Get methods"""
 
     def setUp(self):
-        """initializes new objects filestorage"""
+        """Initializes new objects filestorage"""
         self.state_1 = State(name="California")
         self.state_1.save()
         self.state_2 = State(name="Texas")
@@ -134,7 +134,7 @@ class TestImproveStorage(unittest.TestCase):
         self.city_1.save()
 
     def test_get_state(self):
-        """check return of get method"""
+        """Check return of get method"""
         obj_state = models.storage.get('State', self.state_1.id)
         state_id = self.state_1.id
         self.assertEqual(state_id, obj_state.id)
