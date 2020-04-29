@@ -66,3 +66,27 @@ def handle_place(place_id=None):
         place_dict = request.get_json()
         obj_place.update(place_dict)
         return jsonify(obj_place.to_dict())
+
+
+@app_views.route("/places_search", methods=["POST"])
+def places_search():
+
+    if request.is_json is False:
+        abort(400, "Not a JSON")
+
+    dict_req = request.get_json()
+    objs = storage.all("Place")
+
+    if not dict_req or [] in dict_req.values():
+        all_places = [obj.to_dict() for obj in objs.values()]
+        return jsonify(all_places)
+
+    state_ids = dict_req.get("states", None)
+    cities_ids = dict_req.get("cities", None)
+    amenities_ids = dict_req.get("amenities", None)
+    places_objs = []
+    if cities_ids:
+        for obj in objs:
+            place_dict = obj.to_dict()
+            if place_dict.get("city_id") in cities_ids:
+                places_objs.append(obj)
