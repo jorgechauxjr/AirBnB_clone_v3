@@ -66,7 +66,7 @@ class FileStorage:
                 del self.__objects[key]
 
     def close(self):
-        """ccall reload() method for deserializing the JSON file to objects"""
+        """Call reload() method for deserializing the JSON file to objects"""
         self.reload()
 
     def get(self, cls, id):
