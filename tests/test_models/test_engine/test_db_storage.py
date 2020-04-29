@@ -81,20 +81,19 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_new(self):
-        """test that new adds an object to the database"""
+        """Test that new adds an object to the database"""
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
-
-@unittest.skipIf(models.storage_t != 'db', 'not testing db storage')
-class TestImproveStorage(unittest.TestCase):
-    """testing Count and Get methods"""
-    __len_all_objs = 4
+    @unittest.skipIf(models.storage_t != 'db', 'not testing db storage')
+    class TestImproveStorage(unittest.TestCase):
+        """Testing Count and Get methods"""
+        __len_all_objs = 4
 
     def setUp(self):
-        """initializes new objects dbstorage"""
+        """Initializes new objects dbstorage"""
         self.state_1 = State(name="California")
         self.state_1.save()
         self.state_2 = State(name="Texas")
@@ -108,12 +107,12 @@ class TestImproveStorage(unittest.TestCase):
         self.city_1.save()
 
     def test_get_state(self):
-        """check return of get method"""
+        """Check return of get method"""
         obj_state = models.storage.get('State', self.state_1.id)
         state_id = self.state_1.id
         self.assertEqual(state_id, obj_state.id)
 
     def test_count_all(self):
-        """checks return of count method"""
+        """Checks return of count method"""
         count_objs = models.storage.count()
         self.assertEqual(self.__len_all_objs, count_objs)
