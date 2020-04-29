@@ -38,7 +38,7 @@ class TestFileStorageDocs(unittest.TestCase):
                          "Found code style errors (and warnings).")
 
     def test_pep8_conformance_test_file_storage(self):
-        """Test tests/test_models/test_file_storage.py conforms to PEP8."""
+        """Test tests/test_models/test_file_storage.py conforms to PEP8"""
         pep8s = pep8.StyleGuide(quiet=True)
         result = pep8s.check_files(['tests/test_models/test_engine/\
 test_file_storage.py'])
@@ -80,7 +80,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_new(self):
-        """test that new adds an object to the FileStorage.__objects attr"""
+        """Test that new adds an object to the FileStorage.__objects attr"""
         storage = FileStorage()
         save = FileStorage._FileStorage__objects
         FileStorage._FileStorage__objects = {}
@@ -117,10 +117,10 @@ class TestFileStorage(unittest.TestCase):
 
 @unittest.skipIf(models.storage_t == 'db', 'not testing file storage')
 class TestImproveStorage(unittest.TestCase):
-    """testing Count and Get methods"""
+    """Testing Count and Get methods"""
 
     def setUp(self):
-        """initializes new objects filestorage"""
+        """Initializes new objects filestorage"""
         self.state_1 = State(name="California")
         self.state_1.save()
         self.state_2 = State(name="Texas")
@@ -134,7 +134,16 @@ class TestImproveStorage(unittest.TestCase):
         self.city_1.save()
 
     def test_get_state(self):
-        """check return of get method"""
+        """Check return of get method"""
         obj_state = models.storage.get('State', self.state_1.id)
         state_id = self.state_1.id
         self.assertEqual(state_id, obj_state.id)
+
+    def test_count_all(self):
+        """Checks return of count method"""
+        count_objs = models.storage.count()
+        self.state_5 = State(name="Cali")
+        models.storage.new(self.state_5)
+        self.state_5.save()
+        count_objs2 = models.storage.count()
+        self.assertEqual(count_objs + 1, count_objs2)
