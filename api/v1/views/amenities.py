@@ -3,6 +3,7 @@
 from models import storage
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
+from models.amenity import Amenity
 
 
 @app_views.route('/amenities', methods=['GET'])
@@ -52,3 +53,17 @@ def amenities_by_id(amenity_id=None):
 
     if request.method == "GET":
         return jsonify(obj_amenity.to_dict())
+
+
+@app_views.route("/amenities", methods=["POST"])
+def create_amenity():
+    """Create amenity"""
+    if request.is_json is False:
+        abort(400, "Not a JSON")
+    amenity_dict = request.get_json()
+    if "name" not in amenity_dict:
+        abort(400, "Missing name")
+    new_amenity = Amenity(**amenity_dict)
+    new_amenity.save()
+    return jsonify(new_amenity.to_dict()), 201
+
