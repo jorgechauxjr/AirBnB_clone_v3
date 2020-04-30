@@ -84,7 +84,6 @@ def places_search():
     cities_ids = set(dict_req.get("cities", []))
     amenities_ids = set(dict_req.get("amenities", []))
     sum_lens = len(state_ids) + len(cities_ids) + len(amenities_ids)
-
     if not dict_req or sum_lens == 0:
         ans = [place.to_dict() for place in all_places]
         return jsonify(ans)
@@ -118,7 +117,7 @@ def places_search():
         if place.amenities:
             place__amenities = [amenity.id for amenity in place.amenities]
 
-        if place__amenities and all([
+        if place__amenities and amenities_ids_real and all([
                 amenity_id in place__amenities for
                 amenity_id in amenities_ids_real]):
             filter_place_amenity.append(place)
