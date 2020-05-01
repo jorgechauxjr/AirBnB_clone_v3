@@ -6,9 +6,12 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
 from models.state import State
+from flasgger.utils import swag_from
 
 
 @app_views.route("/states", methods=["GET", "POST"])
+@swag_from('flasgger/states/no_state_id_get.yml', methods=['GET'])
+@swag_from('flasgger/states/no_state_id_post.yml', methods=['POST'])
 def get_states():
     """Get all states"""
 
@@ -29,6 +32,9 @@ def get_states():
 
 
 @app_views.route("/states/<state_id>", methods=["GET", "DELETE", "PUT"])
+@swag_from('flasgger/states/state_id_get.yml', methods=['GET'])
+@swag_from('flasgger/states/state_id_delete.yml', methods=['DELETE'])
+@swag_from('flasgger/states/state_id_put.yml', methods=['PUT'])
 def handle_state(state_id=None):
     """Get, Delete or Update a state by id"""
 
