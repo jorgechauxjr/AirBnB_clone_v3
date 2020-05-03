@@ -1,0 +1,38 @@
+Get a list of users
+Returns a list of users objects
+---
+paths:
+  "/users":
+tags:
+  - "user"
+description: ""
+operationId: "Getusers"
+responses:
+  "200":
+    description: List of objects attributes of users
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the amenity
+        email:
+          type: string
+          description: email of the amenity
+        password:
+          type: string
+          description: password of the amenity
+        first_name:
+          type: string
+          description: first_name of the amenity
+        last_name:
+          type: string
+          description: last_name of the amenity
+        updated_at:
+          type: string
+          description: datetime when amenity was updated
+        created_at:
+          type: string
+          description: datetime when amenity was created
