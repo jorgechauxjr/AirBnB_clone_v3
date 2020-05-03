@@ -1,0 +1,34 @@
+Get an amenity by amenity_id
+Returns a an amenity by amenity_id
+---
+paths:
+  "/amenities/<amenity_id>":
+tags:
+  - "amenity"
+description: ""
+operationId: "Getamenity"
+parameters:
+  - name: "amenity_id"
+    in: "path"
+    description: "ID of amenity to delete"
+    required: true
+responses:
+  "200":
+    description: List of objects attributes of amenities
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the amenity
+        name:
+          type: string
+          description: name of the amenity
+        updated_at:
+          type: string
+          description: datetime when amenity was updated
+        created_at:
+          type: string
+          description: datetime when amenity was created

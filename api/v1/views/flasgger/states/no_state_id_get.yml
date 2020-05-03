@@ -33,15 +33,11 @@ definitions:
   State:
     type: "object"
     properties:
-      id:
-        type: "string"
       name:
         type: "string"
   User:
     type: "object"
     properties:
-      id:
-        type: "string"
       email:
         type: "string"
       password:
@@ -53,8 +49,6 @@ definitions:
   Place:
     type: "object"
     properties:
-      id:
-        type: "string"
       name:
         type: "string"
       city_id:
@@ -78,8 +72,6 @@ definitions:
   City:
     type: "object"
     properties:
-      id:
-        type: "string"
       state_id:
         type: "string"
       name:
@@ -87,8 +79,6 @@ definitions:
   Review:
     type: "object"
     properties:
-      id:
-        type: "string"
       text:
         type: "string"
       place_id:
@@ -98,7 +88,5 @@ definitions:
   Amenity:
     type: "object"
     properties:
-      id:
-        type: "string"
       name:
         type: "string"
