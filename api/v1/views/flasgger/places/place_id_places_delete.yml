@@ -12,3 +12,6 @@ parameters:
     in: "path"
     description: "ID of place to return"
     required: true
+responses:
+  "200":
+    description: Ok, deleted

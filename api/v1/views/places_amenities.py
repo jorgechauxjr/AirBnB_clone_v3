@@ -30,10 +30,10 @@ def get_amenities_of_a_place(place_id=None):
 
 @app_views.route("places/<place_id>/amenities/<amenity_id>",
                  methods=["DELETE", "POST"])
-@swag_from('flasgger/places_amenities/place_id_amenity_id_get.yml',
-           methods=['GET'])
-@swag_from('flasgger/places_amenities/place_id_amenity_id_delete.yml',
+@swag_from('flasgger/places_amenities/place_id_amenity_id_post.yml',
            methods=['POST'])
+@swag_from('flasgger/places_amenities/place_id_amenity_id_delete.yml',
+           methods=['DELETE'])
 def create_or_delete_place_amenity(place_id=None, amenity_id=None):
     """Create or delete a place amenity"""
 
