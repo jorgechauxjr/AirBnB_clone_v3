@@ -1,0 +1,92 @@
+Get a list of states
+Returns a list of states objects
+---
+paths:
+  "/states":
+tags:
+  - "state"
+description: ""
+operationId: "GetStates"
+responses:
+  "200":
+    description: List of objects attributes of states
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the state
+        name:
+          type: string
+          description: name of the state
+        updated_at:
+          type: string
+          description: datetime when state was updated
+        created_at:
+          type: string
+          description: datetime when state was created
+
+# All definitions of models in this project
+definitions:
+  State:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+  User:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+  Place:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      city_id:
+        type: "string"
+      user_id:
+        type: "string"
+      description:
+        type: "string"
+      number_rooms:
+        type: "integer"
+      number_bathrooms:
+        type: "integer"
+      max_guest:
+        type: "integer"
+      price_by_night:
+        type: "integer"
+      latitude:
+        type: "float"
+      longitude:
+        type: "float"
+  City:
+    type: "object"
+    properties:
+      state_id:
+        type: "string"
+      name:
+        type: "string"
+  Review:
+    type: "object"
+    properties:
+      text:
+        type: "string"
+      place_id:
+        type: "string"
+      user_id:
+        type: "string"
+  Amenity:
+    type: "object"
+    properties:
+      name:
+        type: "string"

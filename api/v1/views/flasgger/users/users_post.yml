@@ -1,0 +1,45 @@
+Add a new user
+Returns a new user object
+---
+paths:
+  "/users":
+tags:
+  - "user"
+description: ""
+operationId: "Postusers"
+parameters:
+  - name: "body"
+    in: "body"
+    description: "user object attributes (id's cannot be updated)"
+    required: true
+    schema:
+      $ref: "#/definitions/User"
+responses:
+  "200":
+    description: List of objects attributes of users
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the amenity
+        email:
+          type: string
+          description: email of the amenity
+        password:
+          type: string
+          description: password of the amenity
+        first_name:
+          type: string
+          description: first_name of the amenity
+        last_name:
+          type: string
+          description: last_name of the amenity
+        updated_at:
+          type: string
+          description: datetime when amenity was updated
+        created_at:
+          type: string
+          description: datetime when amenity was created

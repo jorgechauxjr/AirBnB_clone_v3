@@ -1,0 +1,14 @@
+Delete a review by review_id
+Returns a review by review_id
+---
+paths:
+  "reviews/<review_id>":
+tags:
+  - "review"
+description: ""
+operationId: "Deletereviewbyreviewid"
+parameters:
+  - name: "review_id"
+    in: "path"
+    description: "ID of review to return"
+    required: true

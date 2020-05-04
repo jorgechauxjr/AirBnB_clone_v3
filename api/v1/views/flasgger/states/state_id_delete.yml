@@ -1,0 +1,17 @@
+Delete a state by id
+Returns an empty json
+---
+paths:
+  "/states/{state_id}":
+tags:
+  - "state"
+description: ""
+operationId: "DeleteState"
+parameters:
+  - name: "state_id"
+    in: "path"
+    description: "ID of state to return"
+    required: true
+responses:
+  "200":
+    description: Empty json returned

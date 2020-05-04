@@ -1,0 +1,36 @@
+Add a new amenity
+Returns a new amenity object
+---
+paths:
+  "/amenities":
+tags:
+  - "amenity"
+description: ""
+operationId: "Postamenity"
+parameters:
+  - name: "body"
+    in: "body"
+    description: "amenity object attributes (id's cannot be updated)"
+    required: true
+    schema:
+      $ref: "#/definitions/Amenity"
+responses:
+  "200":
+    description: List of objects attributes of amenity
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the amenity
+        name:
+          type: string
+          description: name of the amenity
+        updated_at:
+          type: string
+          description: datetime when amenity was updated
+        created_at:
+          type: string
+          description: datetime when amenity was created

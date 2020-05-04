@@ -6,11 +6,17 @@ from api.v1.views import app_views
 from flask import Flask, jsonify
 from models import storage
 from flask_cors import CORS
+from flasgger import Swagger
 
 app = Flask(__name__)
 cors = CORS(app, origins="0.0.0.0")
 app.url_map.strict_slashes = False
-
+app.config['SWAGGER'] = {
+    "description": "",
+    "termsOfService": "",
+    "title": "AirBnB clone - RESTful API",
+    "version": "1.0.1"}
+swagger = Swagger(app)
 # app_views variable created in api.v1.views
 app.register_blueprint(app_views)
 
