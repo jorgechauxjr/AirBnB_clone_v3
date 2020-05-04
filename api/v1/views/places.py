@@ -7,11 +7,14 @@ from flask import jsonify, abort, request
 from models import storage
 from models.place import Place
 from os import getenv
+from flasgger.utils import swag_from
 
 storage_t = getenv("HBNB_TYPE_STORAGE")
 
 
 @app_views.route("/cities/<city_id>/places", methods=["GET", "POST"])
+@swag_from('flasgger/places/city_id_places_get.yml', methods=['GET'])
+@swag_from('flasgger/places/city_id_places_post.yml', methods=['POST'])
 def create_or_get_place(city_id=None):
     """Creates or get a place given a city id"""
 
@@ -47,6 +50,9 @@ def create_or_get_place(city_id=None):
 
 
 @app_views.route("/places/<place_id>", methods=["GET", "DELETE", "PUT"])
+@swag_from('flasgger/places/place_id_places_get.yml', methods=['GET'])
+@swag_from('flasgger/places/place_id_places_delete.yml', methods=['DELETE'])
+@swag_from('flasgger/places/place_id_places_put.yml', methods=['PUT'])
 def handle_place(place_id=None):
     """Get, Delete or Update a place by id"""
 
@@ -72,6 +78,7 @@ def handle_place(place_id=None):
 
 
 @app_views.route("/places_search", methods=["POST"])
+@swag_from('flasgger/places/places_search_post.yml', methods=['POST'])
 def places_search():
 
     if request.is_json is False:

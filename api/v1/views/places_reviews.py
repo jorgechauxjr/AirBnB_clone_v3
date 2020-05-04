@@ -6,9 +6,13 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
 from models.review import Review
+from flasgger.utils import swag_from
 
 
 @app_views.route("places/<place_id>/reviews", methods=["GET", "POST"])
+@swag_from('flasgger/places_reviews/place_id_reviews_get.yml', methods=['GET'])
+@swag_from('flasgger/places_reviews/place_id_reviews_post.yml',
+           methods=['POST'])
 def create_or_get_review(place_id=None):
     """Creates or get a review given a place id"""
 
@@ -44,6 +48,9 @@ def create_or_get_review(place_id=None):
 
 
 @app_views.route("reviews/<review_id>", methods=["GET", "DELETE", "PUT"])
+@swag_from('flasgger/places_reviews/review_id_get.yml', methods=['GET'])
+@swag_from('flasgger/places_reviews/review_id_delete.yml', methods=['DELETE'])
+@swag_from('flasgger/places_reviews/review_id_put.yml', methods=['PUT'])
 def handle_review(review_id=None):
     """Get, Delete or Update a review by id"""
 
