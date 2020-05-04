@@ -1,5 +1,5 @@
-Get an user by user_id
-Returns a an user by user_id
+Get a user by user_id
+Returns a a user by user_id
 ---
 paths:
   "/users/<user_id>":
