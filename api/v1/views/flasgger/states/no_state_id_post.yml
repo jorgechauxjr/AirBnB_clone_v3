@@ -1,0 +1,41 @@
+Add a new state
+Return the new state object created
+---
+paths:
+  "/states":
+tags:
+  - "state"
+summary: "Add a new state"
+description: ""
+operationId: "addState"
+parameters:
+  - name: "name"
+    in: "body"
+    data: string
+    required: true
+    description: "Name of the state to add"
+    schema:
+      properties:
+        name:
+          type: string
+          description: name of the state to add
+responses:
+  "201":
+    description: List of objects attributes of states
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the state
+        name:
+          type: string
+          description: name of the state
+        updated_at:
+          type: string
+          description: datetime when state was updated
+        created_at:
+          type: string
+          description: datetime when state was created

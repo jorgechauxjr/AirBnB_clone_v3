@@ -4,10 +4,12 @@ from models import storage
 from models.city import City
 from models.state import State
 from api.v1.views import app_views
-from flask import Flask, jsonify, abort, request, make_response
+from flask import jsonify, abort, request
+from flasgger.utils import swag_from
 
 
-@app_views.route('/cities', methods=['GET'], strict_slashes=False)
+@app_views.route('/cities', methods=['GET'])
+@swag_from('flasgger/cities/cities_get.yml', methods=['GET'])
 def all_cities():
     """Retrieves the list of all cities objects """
     cities_list = []
@@ -17,8 +19,8 @@ def all_cities():
     return jsonify(cities_list)
 
 
-@app_views.route('/states/<state_id>/cities',
-                 methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['GET'])
+@swag_from('flasgger/cities/cities_state_id_get.yml', methods=['GET'])
 def cities_list(state_id):
     """Retrieves the list of all cities objects of a State"""
     cities_list = []
@@ -31,7 +33,8 @@ def cities_list(state_id):
     return jsonify(cities_list)
 
 
-@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['GET'])
+@swag_from('flasgger/cities/cities_city_id_get.yml', methods=['GET'])
 def cities_list_id(city_id):
     """Retrieves a City object by Id"""
     cities_objs = storage.all('City').values()
@@ -41,8 +44,8 @@ def cities_list_id(city_id):
     abort(404)
 
 
-@app_views.route('/cities/<city_id>',
-                 methods=['DELETE'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['DELETE'])
+@swag_from('flasgger/cities/cities_city_id_delete.yml', methods=['DELETE'])
 def cities_remove(city_id):
     """Remove a city by Id"""
     city_to_delete = storage.get('City', city_id)
@@ -54,6 +57,7 @@ def cities_remove(city_id):
 
 
 @app_views.route('/states/<state_id>/cities', methods=['POST'])
+@swag_from('flasgger/cities/cities_states_id_post.yml', methods=['POST'])
 def create_city(state_id):
     """
     Creates a new city
@@ -73,6 +77,7 @@ def create_city(state_id):
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'])
+@swag_from('flasgger/cities/cities_city_id_put.yml', methods=['PUT'])
 def update_city(city_id):
     """
     Updates a City object

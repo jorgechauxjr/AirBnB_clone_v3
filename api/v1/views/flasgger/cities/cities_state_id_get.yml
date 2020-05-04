@@ -1,0 +1,34 @@
+Get all cities by state
+Returns a list of cities by state
+---
+paths:
+  "/states/<state_id>/cities":
+tags:
+  - "city"
+description: ""
+operationId: "GetcitiesBystate"
+parameters:
+  - name: "state_id"
+    in: "path"
+    description: "ID of state of the cities to return"
+    required: true
+responses:
+  "200":
+    description: List of objects attributes of city
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the city
+        name:
+          type: string
+          description: name of the city
+        updated_at:
+          type: string
+          description: datetime when city was updated
+        created_at:
+          type: string
+          description: datetime when city was created

@@ -6,9 +6,12 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
 from models.user import User
+from flasgger.utils import swag_from
 
 
 @app_views.route("/users", methods=["GET", "POST"])
+@swag_from('flasgger/users/users_get.yml', methods=['GET'])
+@swag_from('flasgger/users/users_post.yml', methods=['POST'])
 def get_users():
     """Get all users"""
 
@@ -31,6 +34,9 @@ def get_users():
 
 
 @app_views.route("/users/<user_id>", methods=["GET", "DELETE", "PUT"])
+@swag_from('flasgger/users/users_user_id_get.yml', methods=['GET'])
+@swag_from('flasgger/users/users_user_id_delete.yml', methods=['DELETE'])
+@swag_from('flasgger/users/users_user_id_put.yml', methods=['PUT'])
 def handle_user(user_id=None):
     """Get, Delete or Update a user by id"""
 

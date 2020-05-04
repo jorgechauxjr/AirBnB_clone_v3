@@ -1,0 +1,17 @@
+Delete a city by id
+Returns an empty json
+---
+paths:
+  "/citys/{city_id}":
+tags:
+  - "city"
+description: ""
+operationId: "DeleteCity"
+parameters:
+  - name: "city_id"
+    in: "path"
+    description: "ID of city to return"
+    required: true
+responses:
+  "200":
+    description: Empty json returned

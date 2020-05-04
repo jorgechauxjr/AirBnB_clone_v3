@@ -1,0 +1,32 @@
+Get a list of cities
+Returns a list of cities objects
+---
+paths:
+  "/cities":
+tags:
+  - "city"
+description: ""
+operationId: "GetCities"
+responses:
+  "200":
+    description: List of objects attributes of cities
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the cities
+        state_id:
+          type: string
+          description: unique id of the related state
+        name:
+          type: string
+          description: name of the cities
+        updated_at:
+          type: string
+          description: datetime when cities was updated
+        created_at:
+          type: string
+          description: datetime when cities was created

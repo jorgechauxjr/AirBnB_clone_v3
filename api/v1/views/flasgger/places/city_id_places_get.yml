@@ -1,0 +1,52 @@
+Get a place by city_id
+Returns a place by city_id
+---
+paths:
+  "/cities/<city_id>/places":
+tags:
+  - "place"
+description: ""
+operationId: "Getplace"
+parameters:
+  - name: "city_id"
+    in: "path"
+    description: "ID of place to return"
+    required: true
+responses:
+  "200":
+    description: List of objects attributes of amenities
+    schema:
+      properties:
+        __class__:
+          type: string
+          description: Class name obj.__class__.__name__
+        id:
+          type: string
+          description: unique id of of the place
+        name:
+          type: string
+          description: name of the place
+        city_id:
+          type: "string"
+        user_id:
+          type: "string"
+        description:
+          type: "string"
+        number_rooms:
+          type: "integer"
+        number_bathrooms:
+          type: "integer"
+        max_guest:
+          type: "integer"
+        price_by_night:
+          type: "integer"
+        latitude:
+          type: "float"
+        longitude:
+          type: "float"
+        updated_at:
+          type: string
+          description: datetime when place was updated
+        created_at:
+          type: string
+          description: datetime when place was created
