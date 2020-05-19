@@ -38,4 +38,5 @@ if __name__ == '__main__':
     app.config['ENV'] = 'development'
     host = os.getenv("HBNB_API_HOST", '0.0.0.0')
     port = os.getenv("HBNB_API_PORT", '5000')
-    app.run(host=host, port=port, threaded=True)
+    debug = os.getenv("HBNB_DEBUG", False)
+    app.run(host=host, port=port, threaded=True, debug=debug)
