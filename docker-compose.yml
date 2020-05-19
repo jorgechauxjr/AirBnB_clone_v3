@@ -1,0 +1,66 @@
+version: "3"
+services:
+  # Main web server
+  web:
+    container_name: airbnb_clone_v3_web
+    build:
+      context: "."
+      dockerfile: "./Dockerfile"
+    command: sh -c "/wait && /entrypoint.sh"
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/code
+    environment:
+      HBNB_MYSQL_USER: "hbnb_dev"
+      HBNB_MYSQL_PWD: "hbnb_dev_pwd"
+      HBNB_MYSQL_HOST: "mysql"  # localhost
+      HBNB_MYSQL_DB: "hbnb_dev_db"
+      HBNB_TYPE_STORAGE: "db"
+      HBNB_API_HOST: "0.0.0.0"
+      HBNB_API_PORT: "4000"
+      HBNB_DEBUG: "True"
+      WAIT_HOSTS: "mysql:3306"
+      WAIT_HOSTS_TIMEOUT: "300"
+      WAIT_SLEEP_INTERVAL: "30"
+      WAIT_HOST_CONNECT_TIMEOUT: "30"
+    links:
+      - mysql
+    depends_on:
+      - mysql
+  # Mysql database
+  mysql:
+    container_name: airbnb_clone_v3_mysql
+    image: mysql:5.7.30
+    restart: always
+    command: --init-file /data/application/init.sql
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./setup_mysql_dev.sql:/data/application/init.sql
+    environment:
+      MYSQL_DATABASE: "hbnb_dev_db"
+      MYSQL_USER: "hbnb_dev"
+      MYSQL_PASSWORD: "hbnb_dev_pwd"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+  # Admin for mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: airbnb_clone_v3_phpmyadmin
+    restart: unless-stopped
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: hbnb_dev
+      PMA_PASSWORD: hbnb_dev_pwd
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 8183:80
+volumes:
+  # just a persistance data
+  mysql-data:
+    driver: local
